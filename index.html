@@ -1,73 +1,167 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="hi" class="h-full">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>One-Diary by Vinkart</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1e3a8a">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-100 flex justify-center items-center min-h-screen p-0 sm:p-4">
+<body class="h-full flex flex-col justify-center items-center">
 
-    <div class="w-full max-w-4xl bg-white rounded-none sm:rounded-2xl shadow-2xl overflow-hidden flex flex-col h-screen sm:h-[90vh] border border-gray-200">
+    <div id="app-container" class="w-full h-full max-w-md bg-slate-900 flex flex-col justify-between shadow-2xl relative overflow-hidden">
         
-        <!-- Header -->
-        <header class="bg-blue-900 text-white p-4 flex justify-between items-center relative z-50">
-            <button id="menu-btn" class="text-2xl focus:outline-none">☰</button>
-            <h1 class="text-xl font-bold tracking-wide">One-Diary <span class="text-xs text-blue-300 font-normal">by Vinkart</span></h1>
-            <div class="w-8 h-8 rounded-full bg-blue-700 flex items-center justify-center font-bold">👤</div>
+        <!-- STEP A: 3D VIP LOGIN & AUTH SCREEN -->
+        <div id="auth-screen" class="absolute inset-0 z-50 bg-slate-950 flex flex-col justify-between p-6 overflow-y-auto">
+            <div class="text-center mt-6">
+                <div class="w-20 h-20 mx-auto mb-3 rounded-2xl bg-gradient-to-tr from-blue-700 via-indigo-600 to-emerald-400 p-0.5 shadow-2xl">
+                    <div class="w-full h-full bg-slate-900 rounded-2xl flex items-center justify-center text-3xl font-extrabold text-blue-400">
+                        V
+                    </div>
+                </div>
+                <h1 class="text-2xl font-black text-white tracking-wide">VINKART <span class="text-xs text-emerald-400 block font-normal tracking-widest mt-0.5">FREE AI AGENT EDITION</span></h1>
+            </div>
+
+            <div class="vinkart-3d-card rounded-3xl p-6 text-white my-auto space-y-5">
+                
+                <div id="stage-phone" class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <label class="text-xs font-semibold uppercase tracking-wider text-slate-400">मोबाईल नंबर से लॉगिन करें</label>
+                        <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded-full font-bold">100% FREE AGENT</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <span class="bg-slate-800 border border-slate-700 rounded-xl px-3 py-3 text-sm font-bold text-blue-400 flex items-center">+91</span>
+                        <input type="tel" id="user-mobile" maxlength="10" placeholder="10 अंकों का नंबर दर्ज करें" class="flex-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 font-semibold">
+                    </div>
+                    <button id="send-otp-btn" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 font-bold rounded-xl shadow-lg transition text-sm">OTP प्राप्त करें ➔</button>
+                </div>
+
+                <div id="stage-otp" class="hidden space-y-4">
+                    <div class="flex justify-between items-center">
+                        <label class="text-xs font-semibold uppercase tracking-wider text-slate-400">OTP दर्ज करें</label>
+                        <span id="otp-demo-hint" class="text-[10px] text-emerald-400 font-mono"></span>
+                    </div>
+                    <input type="number" id="otp-input" maxlength="4" placeholder="4-अंकों का OTP दर्ज करें" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-center text-lg font-bold tracking-widest text-white focus:outline-none focus:border-emerald-500">
+                    <button id="verify-otp-btn" class="w-full py-3.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 font-bold rounded-xl shadow-lg transition text-sm">OTP सत्यापित करें ➔</button>
+                </div>
+
+                <div id="stage-lock" class="hidden space-y-4 text-center">
+                    <p class="text-xs text-slate-300">त्वरित लॉगिन के लिए फिंगरप्रिंट या PIN सेट करें</p>
+                    <div id="fingerprint-btn" class="w-20 h-20 mx-auto rounded-full bg-slate-800 border-2 border-blue-500 flex items-center justify-center text-4xl cursor-pointer fingerprint-scan shadow-inner">
+                        👆
+                    </div>
+                    <p class="text-[11px] text-blue-400 font-medium">सेंसर पर टैप करें या सिक्योरिटी पिन डालें</p>
+                    <input type="password" id="pin-input" maxlength="4" placeholder="4-अंकों का पासकोड" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-center text-base font-bold text-white focus:outline-none">
+                    <button id="complete-auth-btn" class="w-full py-3.5 bg-blue-600 hover:bg-blue-500 font-bold rounded-xl shadow-lg transition text-sm">फ्री AI एजेंट शुरू करें 🚀</button>
+                </div>
+
+            </div>
+
+            <div class="text-center text-[11px] text-slate-500 font-medium">
+                © VINKART Autonomous Corp • Unlimited Free AI Agent
+            </div>
+        </div>
+
+        <!-- STEP B: MAIN APP HEADER -->
+        <header class="bg-slate-950 border-b border-slate-800 text-white px-4 py-3 flex justify-between items-center shadow-lg relative z-30">
+            <button id="menu-btn" class="text-2xl focus:outline-none p-1 text-blue-400">☰</button>
+            <h1 id="app-title" class="text-base font-bold tracking-wide flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                One-Diary <span class="text-xs text-emerald-400 font-normal">Free AI Agent</span>
+            </h1>
             
-            <!-- Side Menu -->
-            <div id="side-menu" class="hidden absolute top-full left-0 bg-white text-gray-800 w-72 shadow-2xl rounded-b-xl border border-gray-200 p-4 space-y-3 z-50">
-                <div id="menu-profile" class="p-2 hover:bg-gray-100 rounded cursor-pointer">👤 प्रोफाइल (Profile)</div>
-                <div id="menu-manual" class="p-2 hover:bg-gray-100 rounded cursor-pointer">📖 यूजर मैन्युअल (User Manual)</div>
-                <div id="menu-terms" class="p-2 hover:bg-gray-100 rounded cursor-pointer">📋 नियम व शर्तें (Terms & Conditions)</div>
-                <div class="p-2 hover:bg-gray-100 rounded flex justify-between items-center">
-                    <span>🌐 भाषा (Language)</span>
-                    <select id="lang-select" class="border rounded p-1 text-sm bg-white">
+            <!-- Dynamic Avatar with Photo Upload -->
+            <label for="avatar-upload-input" class="w-9 h-9 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center font-bold text-xs text-white shadow cursor-pointer relative overflow-hidden border border-blue-400">
+                <img id="user-avatar-img" src="" class="hidden w-full h-full object-cover">
+                <span id="user-avatar-placeholder">👤</span>
+                <input type="file" id="avatar-upload-input" accept="image/*" class="hidden">
+            </label>
+
+            <!-- Side Menu Drawer -->
+            <div id="menu-backdrop" class="hidden fixed inset-0 bg-black/60 z-40"></div>
+            <div id="side-menu" class="fixed top-0 left-[-290px] w-[290px] h-full bg-slate-900 text-white shadow-2xl transition-all duration-300 ease-in-out z-50 flex flex-col p-5 space-y-4 border-r border-slate-800">
+                <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                    <span class="font-extrabold text-lg text-blue-400 tracking-wider">VINKART MENU</span>
+                    <button id="close-menu" class="text-xl font-bold text-slate-400 hover:text-white">✕</button>
+                </div>
+                
+                <div id="menu-profile-card" class="p-3 bg-slate-800/80 rounded-xl flex items-center gap-3 border border-slate-700">
+                    <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-lg font-bold text-white overflow-hidden">
+                        <img id="menu-avatar-img" src="" class="hidden w-full h-full object-cover">
+                        <span id="menu-avatar-placeholder">👤</span>
+                    </div>
+                    <div>
+                        <p id="menu-user-mobile-text" class="text-xs font-bold text-white">+91 User Profile</p>
+                        <p class="text-[10px] text-emerald-400 font-medium">Free Testing Mode (₹0)</p>
+                    </div>
+                </div>
+
+                <div id="menu-profile" class="p-2.5 hover:bg-slate-800 rounded-xl cursor-pointer flex items-center gap-3 font-medium text-slate-200 transition text-sm">👤 <span>प्रोफाइल व फोटो (Profile)</span></div>
+                <div id="menu-manual" class="p-2.5 hover:bg-slate-800 rounded-xl cursor-pointer flex items-center gap-3 font-medium text-slate-200 transition text-sm">📖 <span>यूजर मैन्युअल (User Manual)</span></div>
+                <div id="menu-terms" class="p-2.5 hover:bg-slate-800 rounded-xl cursor-pointer flex items-center gap-3 font-medium text-slate-200 transition text-sm">📋 <span>नियम व शर्तें (Terms)</span></div>
+                
+                <div class="p-2.5 bg-slate-950 rounded-xl flex justify-between items-center border border-slate-800">
+                    <span class="font-medium text-slate-300 text-xs">🌐 <span>भाषा (Language)</span></span>
+                    <select id="lang-select" class="border border-slate-700 rounded px-2 py-1 text-xs bg-slate-900 font-semibold text-blue-400 focus:outline-none">
                         <option value="hi">हिंदी</option>
                         <option value="en">English</option>
                     </select>
                 </div>
-                <div id="menu-share" class="p-2 bg-green-50 text-green-700 font-semibold rounded cursor-pointer border border-green-300">
-                    🔗 फ्री ऐप शेयर करें (Share Free)
+
+                <div id="menu-share" class="p-3 bg-emerald-950/60 text-emerald-400 font-semibold rounded-xl cursor-pointer border border-emerald-800/50 flex items-center gap-3 shadow-sm text-xs">
+                    🔗 <span>फ्री ऐप शेयर करें</span>
+                </div>
+
+                <div id="menu-install-apk" class="p-3 bg-blue-950/80 text-blue-300 font-semibold rounded-xl cursor-pointer border border-blue-800 flex items-center gap-3 shadow-sm text-xs mt-auto">
+                    📲 <span>APK/PWA ऐप इंस्टॉल करें</span>
                 </div>
             </div>
         </header>
 
-        <!-- Main Diary Area -->
-        <main class="flex-1 p-4 bg-amber-50 overflow-y-auto">
-            <div class="max-w-2xl mx-auto bg-white border-4 border-amber-800 rounded-2xl shadow-xl p-6 diary-paper min-h-[400px]">
-                <div class="border-b-2 border-amber-300 pb-2 mb-4 flex justify-between items-center">
-                    <span id="current-date" class="font-bold text-amber-900 text-lg">📅 आज की डायरी</span>
-                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full font-semibold">🔒 100% प्राइवेट</span>
+        <!-- STEP C: MAIN DIARY WORKSPACE -->
+        <main class="flex-1 p-4 bg-slate-900 overflow-y-auto relative flex flex-col justify-center">
+            <div class="w-full max-w-sm mx-auto bg-amber-50 border-4 border-amber-900/30 rounded-2xl shadow-2xl p-4 diary-paper flex-1 flex flex-col justify-between">
+                <div class="border-b-2 border-amber-300/80 pb-2 mb-3 flex justify-between items-center">
+                    <span id="diary-header-text" class="font-bold text-amber-950 text-sm flex items-center gap-1.5">📅 आज की डायरी (Free AI)</span>
+                    <span class="text-[10px] bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded-full font-bold">🤖 Auto AI Agent Active</span>
                 </div>
 
-                <div id="diary-content" class="space-y-4">
-                    <p class="text-gray-400 italic text-center mt-12">बोलकर या टाइप करके अपनी डायरी दर्ज करें...</p>
+                <div id="diary-content" class="space-y-3 flex-1 overflow-y-auto pr-1">
+                    <p id="placeholder-text" class="text-amber-800/50 italic text-center text-xs mt-20">बोलकर या टाइप करके अपनी डायरी दर्ज करें... AI एजेंट ऑटो-रिस्पॉन्स करेगा!</p>
                 </div>
             </div>
         </main>
 
-        <!-- Plus Options Popup -->
-        <div id="plus-modal" class="hidden absolute bottom-20 left-4 bg-white text-gray-800 rounded-xl shadow-2xl border p-3 flex gap-4 text-xs font-semibold z-40">
-            <div class="flex flex-col items-center cursor-pointer hover:text-blue-600"><span>📷</span> स्कैनर</div>
-            <div class="flex flex-col items-center cursor-pointer hover:text-blue-600"><span>🖼️</span> फोटो</div>
-            <div class="flex flex-col items-center cursor-pointer hover:text-blue-600"><span>📁</span> फाइल</div>
+        <!-- Plus Action Drawer -->
+        <div id="plus-modal" class="hidden absolute bottom-20 left-4 bg-slate-800 text-white rounded-2xl shadow-2xl border border-slate-700 p-4 flex gap-6 text-xs font-semibold z-40">
+            <div id="opt-scanner" class="flex flex-col items-center cursor-pointer hover:text-blue-400"><span class="text-2xl mb-1">📷</span> स्कैनर</div>
+            <div id="opt-photo" class="flex flex-col items-center cursor-pointer hover:text-blue-400"><span class="text-2xl mb-1">🖼️</span> फोटो</div>
+            <div id="opt-file" class="flex flex-col items-center cursor-pointer hover:text-blue-400"><span class="text-2xl mb-1">📁</span> फाइल</div>
         </div>
 
-        <!-- Bottom Transparent Chat Bar with Neon Glow -->
-        <footer class="p-3 bg-gray-900/90 backdrop-blur-md relative border-t border-gray-800">
-            <div class="neon-running-bar rounded-full p-1.5 flex items-center bg-gray-900/80">
-                <button id="plus-btn" class="w-10 h-10 bg-gray-800 hover:bg-gray-700 text-white rounded-full font-bold text-2xl flex items-center justify-center mr-2">+</button>
-                <input type="text" id="user-input" placeholder="यहाँ लिखें या बोलकर इंसानी संवाद करें..." class="flex-1 bg-transparent text-white px-3 focus:outline-none text-sm placeholder-gray-400">
-                <div class="flex items-center gap-2">
-                    <button id="mic-btn" class="w-12 h-12 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center text-xl transition-all">🎤</button>
-                    <button id="send-btn" class="w-10 h-10 bg-green-600 hover:bg-green-500 text-white rounded-full flex items-center justify-center text-lg font-bold">➔</button>
+        <!-- STEP D: NEON CHAT INPUT BAR -->
+        <footer class="p-3 bg-slate-950 relative border-t border-slate-800 z-30">
+            <div class="neon-running-bar rounded-full p-1.5 flex items-center bg-slate-900">
+                <button id="plus-btn" class="w-10 h-10 bg-slate-800 hover:bg-slate-700 text-blue-400 rounded-full font-bold text-xl flex items-center justify-center mr-2 transition">+</button>
+                <input type="text" id="user-input" placeholder="यहाँ लिखें या बोलकर संवाद करें..." class="flex-1 bg-transparent text-white px-3 focus:outline-none text-sm placeholder-slate-400 font-medium">
+                <div class="flex items-center gap-1.5">
+                    <button id="mic-btn" class="w-11 h-11 bg-rose-600 hover:bg-rose-500 text-white rounded-full flex items-center justify-center text-lg shadow-lg transition">🎤</button>
+                    <button id="send-btn" class="w-10 h-10 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full flex items-center justify-center text-base font-bold shadow-lg transition">➔</button>
                 </div>
             </div>
         </footer>
 
+    </div>
+
+    <!-- Generic VIP Modal Popup -->
+    <div id="info-modal" class="hidden fixed inset-0 bg-black/75 z-50 flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-sm w-full p-6 shadow-2xl space-y-4 text-center text-white">
+            <h3 id="modal-title" class="text-lg font-bold text-blue-400">सूचना</h3>
+            <p id="modal-desc" class="text-sm text-slate-300">यह फीचर एक्टिव है।</p>
+            <button id="modal-close" class="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 font-bold rounded-xl hover:from-blue-500 hover:to-indigo-500 transition text-sm">ठीक है (OK)</button>
+        </div>
     </div>
 
     <script type="module" src="app.js"></script>

@@ -1,13 +1,9 @@
-// ==========================================
-// CONFIGURATION & API KEY FILE
-// ==========================================
 const CONFIG = {
-    // YOUR_API_KEY_HERE
-    AI_API_KEY: "YOUR_API_KEY_HERE", 
-    
-    // ऐप की सामान्य सेटिंग
+    AI_API_KEY: "FREE_AUTO_AGENT", 
     APP_NAME: "One-Diary by Vinkart",
-    VERSION: "1.0-Test"
+    COMPANY_BRAND: "VINKART Autonomous Technologies",
+    VERSION: "4.0-Free-AI-Agent",
+    MONETIZATION_MODE: "TESTING_FREE" // Future production: 10 INR per page for download/share
 };
 
 export default CONFIG;

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One-Diary by Vinkart</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen p-0 sm:p-4">
+
+    <div class="w-full max-w-4xl bg-white rounded-none sm:rounded-2xl shadow-2xl overflow-hidden flex flex-col h-screen sm:h-[90vh] border border-gray-200">
+        
+        <!-- Header -->
+        <header class="bg-blue-900 text-white p-4 flex justify-between items-center relative z-50">
+            <button id="menu-btn" class="text-2xl focus:outline-none">☰</button>
+            <h1 class="text-xl font-bold tracking-wide">One-Diary <span class="text-xs text-blue-300 font-normal">by Vinkart</span></h1>
+            <div class="w-8 h-8 rounded-full bg-blue-700 flex items-center justify-center font-bold">👤</div>
+            
+            <!-- Side Menu -->
+            <div id="side-menu" class="hidden absolute top-full left-0 bg-white text-gray-800 w-72 shadow-2xl rounded-b-xl border border-gray-200 p-4 space-y-3 z-50">
+                <div id="menu-profile" class="p-2 hover:bg-gray-100 rounded cursor-pointer">👤 प्रोफाइल (Profile)</div>
+                <div id="menu-manual" class="p-2 hover:bg-gray-100 rounded cursor-pointer">📖 यूजर मैन्युअल (User Manual)</div>
+                <div id="menu-terms" class="p-2 hover:bg-gray-100 rounded cursor-pointer">📋 नियम व शर्तें (Terms & Conditions)</div>
+                <div class="p-2 hover:bg-gray-100 rounded flex justify-between items-center">
+                    <span>🌐 भाषा (Language)</span>
+                    <select id="lang-select" class="border rounded p-1 text-sm bg-white">
+                        <option value="hi">हिंदी</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+                <div id="menu-share" class="p-2 bg-green-50 text-green-700 font-semibold rounded cursor-pointer border border-green-300">
+                    🔗 फ्री ऐप शेयर करें (Share Free)
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Diary Area -->
+        <main class="flex-1 p-4 bg-amber-50 overflow-y-auto">
+            <div class="max-w-2xl mx-auto bg-white border-4 border-amber-800 rounded-2xl shadow-xl p-6 diary-paper min-h-[400px]">
+                <div class="border-b-2 border-amber-300 pb-2 mb-4 flex justify-between items-center">
+                    <span id="current-date" class="font-bold text-amber-900 text-lg">📅 आज की डायरी</span>
+                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full font-semibold">🔒 100% प्राइवेट</span>
+                </div>
+
+                <div id="diary-content" class="space-y-4">
+                    <p class="text-gray-400 italic text-center mt-12">बोलकर या टाइप करके अपनी डायरी दर्ज करें...</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Plus Options Popup -->
+        <div id="plus-modal" class="hidden absolute bottom-20 left-4 bg-white text-gray-800 rounded-xl shadow-2xl border p-3 flex gap-4 text-xs font-semibold z-40">
+            <div class="flex flex-col items-center cursor-pointer hover:text-blue-600"><span>📷</span> स्कैनर</div>
+            <div class="flex flex-col items-center cursor-pointer hover:text-blue-600"><span>🖼️</span> फोटो</div>
+            <div class="flex flex-col items-center cursor-pointer hover:text-blue-600"><span>📁</span> फाइल</div>
+        </div>
+
+        <!-- Bottom Transparent Chat Bar with Neon Glow -->
+        <footer class="p-3 bg-gray-900/90 backdrop-blur-md relative border-t border-gray-800">
+            <div class="neon-running-bar rounded-full p-1.5 flex items-center bg-gray-900/80">
+                <button id="plus-btn" class="w-10 h-10 bg-gray-800 hover:bg-gray-700 text-white rounded-full font-bold text-2xl flex items-center justify-center mr-2">+</button>
+                <input type="text" id="user-input" placeholder="यहाँ लिखें या बोलकर इंसानी संवाद करें..." class="flex-1 bg-transparent text-white px-3 focus:outline-none text-sm placeholder-gray-400">
+                <div class="flex items-center gap-2">
+                    <button id="mic-btn" class="w-12 h-12 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center text-xl transition-all">🎤</button>
+                    <button id="send-btn" class="w-10 h-10 bg-green-600 hover:bg-green-500 text-white rounded-full flex items-center justify-center text-lg font-bold">➔</button>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
